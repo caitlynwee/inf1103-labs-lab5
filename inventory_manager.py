@@ -226,3 +226,65 @@ def display_menu():
     print("5. Save Inventory")
     print("6. Exit")
     print("----------------------------")
+
+def main():
+
+    print("=" * 40)
+    print("INVENTORY MANAGEMENT SYSTEM")
+    print("=" * 40)
+
+    # Load inventory when program starts
+    inventory = load_inventory()
+
+    while True:
+
+        display_menu()
+
+        option = input("Enter option: ").strip()
+
+        # Option 1 - Display
+        if option == "1":
+            display_all(inventory)
+
+        # Option 2 - Add
+        elif option == "2":
+            add_product(inventory)
+
+        # Option 3 - Update
+        elif option == "3":
+            update_stock(inventory)
+
+        # Option 4 - Search
+        elif option == "4":
+            search_product(inventory)
+
+        # Option 5 - Save
+        elif option == "5":
+            print("\nSaving inventory...")
+            save_inventory(inventory)
+
+        # Option 6 - Exit
+        elif option == "6":
+
+            print("\nSaving inventory before exit...")
+
+            try:
+                with open(FILE_NAME, "w") as file:
+                    json.dump(inventory, file, indent=4)
+
+                print("Inventory saved successfully.")
+
+            except Exception as error:
+                print(f"Error saving inventory: {error}")
+
+            print("Thank you for using Inventory Management System.")
+            print("Program terminated.")
+
+            break
+
+        # Invalid menu input
+        else:
+            print("Invalid option. Please enter a number from 1 to 6.")
+
+if __name__ == "__main__":
+    main()
