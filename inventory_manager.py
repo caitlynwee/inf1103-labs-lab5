@@ -92,3 +92,56 @@ def display_all(inventory):
             )
 
     print("------------------------------------------------")
+    
+def add_product(inventory):
+    """
+    Add a new product into the inventory.
+    """
+
+    print("\nAdd New Product")
+
+    product_id = input("Product ID: ").strip().upper()
+
+    for product in inventory:
+        if product["id"].upper() == product_id:
+            print("Error: Product ID already exists.")
+            return
+
+    product_name = input("Product Name: ").strip()
+
+    while True:
+        try:
+            price = float(input("Price: "))
+
+            if price < 0:
+                print("Price cannot be negative.")
+                continue
+
+            break
+
+        except ValueError:
+            print("Invalid price. Please enter a number.")
+
+    while True:
+        try:
+            stock = int(input("Stock Quantity: "))
+
+            if stock < 0:
+                print("Stock quantity cannot be negative.")
+                continue
+
+            break
+
+        except ValueError:
+            print("Invalid stock quantity. Please enter a whole number.")
+
+    new_product = {
+        "id": product_id,
+        "name": product_name,
+        "price": price,
+        "stock": stock
+    }
+
+    inventory.append(new_product)
+
+    print("Product added successfully!")
