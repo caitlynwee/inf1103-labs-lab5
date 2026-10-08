@@ -145,3 +145,44 @@ def add_product(inventory):
     inventory.append(new_product)
 
     print("Product added successfully!")
+    
+def update_stock(inventory):
+    """
+    Search for a product by ID
+    and update its stock quantity.
+    """
+
+    print("\nUpdate Stock")
+
+    product_id = input("Enter Product ID: ").strip().upper()
+
+    for product in inventory:
+
+        if product["id"].upper() == product_id:
+
+            print("Product Found:")
+            print(f"Name: {product['name']}")
+            print(f"Current Stock: {product['stock']}")
+
+            while True:
+                try:
+                    new_stock = int(input("New Stock Quantity: "))
+
+                    if new_stock < 0:
+                        print("Stock quantity cannot be negative.")
+                        continue
+
+                    break
+
+                except ValueError:
+                    print(
+                        "Invalid stock quantity. "
+                        "Please enter a whole number."
+                    )
+
+            product["stock"] = new_stock
+
+            print("Stock updated successfully!")
+            return
+
+    print("Product not found.")
