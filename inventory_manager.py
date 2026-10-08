@@ -186,3 +186,43 @@ def update_stock(inventory):
             return
 
     print("Product not found.")
+    
+def search_product(inventory):
+    """
+    Search for and display one product
+    using its product ID.
+    """
+
+    print("\nSearch Product")
+
+    product_id = input("Enter Product ID: ").strip().upper()
+
+    for product in inventory:
+
+        if product["id"].upper() == product_id:
+
+            print("Product Found")
+            print("------------------------------------------------")
+            print(f"ID: {product['id']}")
+            print(f"Name: {product['name']}")
+            print(f"Price: ${product['price']:.2f}")
+            print(f"Stock: {product['stock']}")
+            print("------------------------------------------------")
+
+            return
+
+    print("Product not found.")
+
+def display_menu():
+    """
+    Display the main inventory menu.
+    """
+
+    print("\n----------- MENU -----------")
+    print("1. Display All Products")
+    print("2. Add Product")
+    print("3. Update Stock")
+    print("4. Search Product")
+    print("5. Save Inventory")
+    print("6. Exit")
+    print("----------------------------")
