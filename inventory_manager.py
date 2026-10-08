@@ -55,3 +55,40 @@ def load_inventory():
             }
         ]
         return inventory
+
+def save_inventory(inventory):
+    """
+    Save inventory data into inventory.json.
+    """
+
+    try:
+        with open(FILE_NAME, "w") as file:
+            json.dump(inventory, file, indent=4)
+
+        print("Inventory saved successfully to inventory.json.")
+
+    except Exception as error:
+        print(f"Error saving inventory: {error}")
+
+def display_all(inventory):
+    """
+    Display every product currently stored
+    in the inventory.
+    """
+
+    print("\nCurrent Inventory")
+    print("------------------------------------------------")
+
+    if len(inventory) == 0:
+        print("Inventory is empty.")
+
+    else:
+        for product in inventory:
+            print(
+                f"ID: {product['id']} | "
+                f"Name: {product['name']} | "
+                f"Price: ${product['price']:.2f} | "
+                f"Stock: {product['stock']}"
+            )
+
+    print("------------------------------------------------")
